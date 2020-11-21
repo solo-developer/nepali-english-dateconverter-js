@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../src/Library/Converter.js"></script>
+</head>
+<body>
+  <div>
+      <label>Nepali Date</label>
+      <input type="text" id="nepali-date"/>
+  </div>
+
+  <div>
+    <label>English Date</label>
+    <input type="text" id="english-date"/>
+</div>
+
+<div>
+   
+    <input type="button" id="toAD" value="Convert to AD"/>
+
+    <input type="button" id="toBS" value="Convert to BS"/>
+</div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+          $('#toAD').on('click',function(){
+             $('#english-date').val(ToAD($('#nepali-date').val()));
+
+          });
+
+          $('#toBS').on('click',function(){
+             $('#nepali-date').val(ToBS($('#english-date').val()));
+
+          });
+        });
+    </script>
+</body>
+</html>
