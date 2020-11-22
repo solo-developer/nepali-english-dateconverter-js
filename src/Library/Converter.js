@@ -303,8 +303,6 @@ function ToAD(request,format) {
 
     }
     numDay = day;
-   // return `${y}/${m}/${total_eDays}`;
-
     return formatDate(y,m,total_eDays,format);
 }
 
@@ -421,8 +419,6 @@ function ToBS(request,format) {
     if (total_nDays < 10) {
         new_d = "0" + total_nDays.toString();
     }
-   // let dat = y.toString() + "/" + new_m.toString() + "/" + new_d.toString();
-
     return formatDate(y,new_m,new_d,format);
 }
 
@@ -432,59 +428,59 @@ function getClosestEnglishDateAndNepaliDate(english_year) {
     if (english_year >= 2034) {
         throw "English date must be between 1944 and 2035.";
     } else if (english_year >= 2029)
-        return [2029, [2085, 09, 16], 1];
+        return [2029, [2085, 09, 16]];
 
     else if (english_year >= 2024)
-        return [2024, [2080, 09, 15], 1];
+        return [2024, [2080, 09, 15]];
 
     else if (english_year >= 2019)
-        return [2019, [2075, 09, 16], 2];
+        return [2019, [2075, 09, 16]];
 
     else if (english_year >= 2014)
-        return [2014, [2070, 09, 16], 3];
+        return [2014, [2070, 09, 16]];
 
     else if (english_year >= 2009)
-        return [2009, [2065, 09, 16], 4];
+        return [2009, [2065, 09, 16]];
 
     else if (english_year >= 2004)
-        return [2004, [2060, 09, 16], 4];
+        return [2004, [2060, 09, 16]];
 
     else if (english_year >= 1999)
-        return [1999, [2055, 09, 16], 5];
+        return [1999, [2055, 09, 16]];
 
     else if (english_year >= 1994)
-        return [1994, [2050, 09, 16], 6];
+        return [1994, [2050, 09, 16]];
 
     else if (english_year >= 1989)
-        return [1989, [2045, 09, 17], 0];
+        return [1989, [2045, 09, 17]];
 
     else if (english_year >= 1984)
-        return [1984, [2040, 09, 16], 0];
+        return [1984, [2040, 09, 16]];
 
     else if (english_year >= 1979)
-        return [1979, [2035, 09, 16], 1];
+        return [1979, [2035, 09, 16]];
 
     else if (english_year >= 1974)
-        return [1974, [2030, 09, 16], 2];
+        return [1974, [2030, 09, 16]];
 
 
     else if (english_year >= 1969)
-        return [1969, [2025, 09, 17], 3];
+        return [1969, [2025, 09, 17]];
 
     else if (english_year >= 1964)
-        return [1964, [2020, 09, 16], 3];
+        return [1964, [2020, 09, 16]];
 
     else if (english_year >= 1959)
-        return [1959, [2015, 09, 16], 4];
+        return [1959, [2015, 09, 16]];
 
     else if (english_year >= 1954)
-        return [1954, [2010, 09, 17], 5];
+        return [1954, [2010, 09, 17]];
 
     else if (english_year >= 1949)
-        return [1949, [2005, 09, 17], 6];
+        return [1949, [2005, 09, 17]];
 
     else if (english_year >= 1944)
-        return [1944, [2000, 09, 16], 6];
+        return [1944, [2000, 09, 16]];
     else
         throw "English date must be between 1944 and 2035.";
 
