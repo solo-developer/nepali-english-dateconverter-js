@@ -14,7 +14,18 @@
     <label>English Date</label>
     <input type="text" id="english-date"/>
 </div>
+<div>
+    <label>Choose a format:</label>
+<select  id="format">
+    <option value="yMd">YearMonthDay</option>
+    <option value="Mdy">MonthDayYear</option>
+    <option value="dMy">dayMonthYear</option>
+  </select>
+</div>
 
+<div>
+    <label>Separator</label>
+    <input type="text" id="separator" value="/"/>
 <div>
    
     <input type="button" id="toAD" value="Convert to AD"/>
@@ -25,15 +36,24 @@
     <script type="text/javascript">
         $(document).ready(function () {
           $('#toAD').on('click',function(){
-             $('#english-date').val(ToAD($('#nepali-date').val()));
+              let format= getChosenFormat();
+             $('#english-date').val(ToAD($('#nepali-date').val(),format));
 
           });
 
           $('#toBS').on('click',function(){
-             $('#nepali-date').val(ToBS($('#english-date').val()));
+            let format= getChosenFormat();
+             $('#nepali-date').val(ToBS($('#english-date').val(),format));
 
           });
         });
+
+        function getChosenFormat(){
+            return {
+                dateFormat : $('#format').val(),
+                separator : $('#separator').val()
+            };
+        }
     </script>
 </body>
 </html>

@@ -195,7 +195,7 @@ function IsLeapYear(year) {
     return year % 4 == 0;
 }
 
-function ToAD(gDate) {
+function ToAD(gDate,format) {
 
     let def_eyy = 0;
     let def_emm = 0;
@@ -263,7 +263,6 @@ function ToAD(gDate) {
         j += 1;
     }
     total_nDays += +dd;
-    debugger;
     total_eDays = def_edd;
     m = def_emm;
     y = def_eyy;
@@ -295,10 +294,12 @@ function ToAD(gDate) {
 
     }
     numDay = day;
-    return `${y}/${m}/${total_eDays}`;
+   // return `${y}/${m}/${total_eDays}`;
+
+    return formatDate(y,m,total_eDays,format);
 }
 
-function ToBS(gDate) {
+function ToBS(gDate,format) {
     let userDateParts = gDate.split("/");
     let [yy, mm, dd] = userDateParts;
   
@@ -411,8 +412,9 @@ function ToBS(gDate) {
     if (total_nDays < 10) {
         new_d = "0" + total_nDays.toString();
     }
-    let dat = y.toString() + "/" + new_m.toString() + "/" + new_d.toString();
-    return dat;
+   // let dat = y.toString() + "/" + new_m.toString() + "/" + new_d.toString();
+
+    return formatDate(y,new_m,new_d,format);
 }
 
 
@@ -540,4 +542,38 @@ function getClosestEnglishDateAndNepaliDateToAD(nep_year) {
     else
         throw "Nepali Date must be between 2000 and 2090";
 
+}
+
+/*
+  formats date in  specified format
+  format : {
+     dateFormat : 'yMd' || 'Mdy'  || 'dMy',
+     separator : any character , used to separate day, month and year value
+  }
+*/
+
+function formatDate(year,month,day,format){
+
+    let defaultFormat={
+      dateFormat : 'yMd',
+      separator : '/'
+    };
+    format= format || defaultFormat;
+    let dateArray=new Array();
+    switch(format.dateFormat) {
+        case 'yMd':
+          dateArray= [year,month,day];
+          break;
+        case 'Mdy':
+            dateArray= [month,day,year];
+          break;     
+        case 'dMy':
+            dateArray= [day,month,year];
+            break;
+        default:
+          throw  "Defined date format is not valid."
+      }
+
+      return dateArray.join(`${format.separator}`);
+   
 }
