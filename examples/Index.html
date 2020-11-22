@@ -37,13 +37,21 @@
         $(document).ready(function () {
           $('#toAD').on('click',function(){
               let format= getChosenFormat();
-             $('#english-date').val(ToAD($('#nepali-date').val(),format));
+              let request = {
+                  date : $('#nepali-date').val(),
+                  format : 'yMd'
+              };
+             $('#english-date').val(ToAD(request,format));
 
           });
 
           $('#toBS').on('click',function(){
             let format= getChosenFormat();
-             $('#nepali-date').val(ToBS($('#english-date').val(),format));
+            let request = {
+                  date : $('#english-date').val(),
+                  format : 'yMd'
+              };
+             $('#nepali-date').val(ToBS(request,format));
 
           });
         });

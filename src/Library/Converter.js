@@ -195,8 +195,19 @@ function IsLeapYear(year) {
     return year % 4 == 0;
 }
 
-function ToAD(gDate,format) {
+/*
+  first parameter : {
+     date: 'date',
+     format : ''
+  }
 
+  second parameter :{
+                dateFormat : $('#format').val(),
+                separator : $('#separator').val()
+            }
+*/
+
+function ToAD(request,format) {
     let def_eyy = 0;
     let def_emm = 0;
     let def_edd = 0;
@@ -212,9 +223,7 @@ function ToAD(gDate,format) {
     let k = 0;
     let numDay = 0;
 
-    //split nepali dates to get its year,month and day
-
-    let userDateParts = gDate.split("/");
+    let userDateParts = getSplittedDateParts(request);
     let [yy, mm, dd] = userDateParts;
 
 
@@ -299,8 +308,8 @@ function ToAD(gDate,format) {
     return formatDate(y,m,total_eDays,format);
 }
 
-function ToBS(gDate,format) {
-    let userDateParts = gDate.split("/");
+function ToBS(request,format) {
+    let userDateParts = getSplittedDateParts(request);
     let [yy, mm, dd] = userDateParts;
   
     let month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -542,6 +551,48 @@ function getClosestEnglishDateAndNepaliDateToAD(nep_year) {
     else
         throw "Nepali Date must be between 2000 and 2090";
 
+}
+
+function getSplittedDateParts(dateDetail){
+   let date= dateDetail.date;
+   let format= dateDetail.format;
+   let separator= getSeparator(date);
+   if(separator==undefined){
+       throw "Separator is not valid";
+   }
+
+   let year=0;
+   let month=0;
+   let day=0;
+   
+   switch(format) {
+    case 'yMd':
+      [year,month,day]=date.split(`${separator}`);
+      break;
+    case 'Mdy':
+        [month,day,year]=date.split(`${separator}`);
+      break;     
+    case 'dMy':
+        [day,month,year]=date.split(`${separator}`);
+        break;
+    default:
+      throw  "Defined date format is not valid."
+  }
+
+  return [year,month,day];
+}
+
+function getSeparator(date){
+    if(date.includes(' ')){
+        return ' ';
+    }
+    if(date.includes('/')){
+        return '/';
+    }
+    if(date.includes('-')){
+        return '-';
+    }
+    return undefined;
 }
 
 /*
