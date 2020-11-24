@@ -185,6 +185,27 @@ function getLastDayOfMonthNep(year, month) {
     bs[89] = [30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 30, 30];
 
     bs[90] = [30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 30, 30];
+
+    bs[91] = [31, 31, 32,31,31,30,30,30,29,30,30,30];
+
+    bs[92] = [31,31,32,31,31,31,30,29,30,29,30,30];
+
+    bs[93] = [31,32,31,31,31,31,30,29,30,29,30,31];
+
+    bs[94] = [31,31,31,32,31,30,30,30,29,30,30,30];
+
+    bs[95] = [31,31,32,31,31,30,30,30,29,30,30,30];
+
+    bs[96] = [31,31,32,31,31,31,30,29,30,29,30,30];
+
+    bs[97] = [31,32,31,31,31,31,30,30,29,30,30,30];
+
+    bs[98] = [31,31,31,32,31,30,30,30,29,30,30,30];
+
+    bs[99] = [31,31,32,31,31,30,30,30,29,30,30,30];
+
+    bs[100] = [31,32,31,32,30,31,30,29,30,29,30,30];
+
     return (bs[year])[month-1];
 }
 
@@ -236,7 +257,6 @@ function ToAD(request,format) {
     def_edd = english_init_date[2];
 
     //Equivalent nepali date
-    // def_nyy = 2000;
     def_nyy = nepali_init_date;
 
     //Initializations
@@ -247,7 +267,6 @@ function ToAD(request,format) {
     m = 0;
     i = 0;
 
-    //  k = 0;
     k = nepali_init_date;
     numDay = 0;
 
@@ -333,7 +352,6 @@ function ToBS(request,format) {
     //Equivalent nepali date
     let [def_nyy,def_nmm,def_ndd] = nepali_init_date;
 
-    //Initializations
     total_eDays = 0;
     total_nDays = 0;
     a = 0;
@@ -425,9 +443,19 @@ function ToBS(request,format) {
 
 function getClosestEnglishDateAndNepaliDate(english_year) {
 
-    if (english_year >= 2034) {
-        throw "English date must be between 1944 and 2035.";
-    } else if (english_year >= 2029)
+    if (english_year >= 2045) {
+        throw "English date must be between 1944 and 2045.";
+    } 
+    else if (english_year >= 2044)
+    return [2044, [2100, 09, 16]];
+
+    else if (english_year >= 2039)
+        return [2039, [2095, 09, 16]];
+        
+    else if (english_year >= 2034)
+        return [2034, [2090, 09, 16]];
+
+    else if (english_year >= 2029)
         return [2029, [2085, 09, 16]];
 
     else if (english_year >= 2024)
@@ -482,13 +510,22 @@ function getClosestEnglishDateAndNepaliDate(english_year) {
     else if (english_year >= 1944)
         return [1944, [2000, 09, 16]];
     else
-        throw "English date must be between 1944 and 2035.";
+        throw "English date must be between 1944 and 2045.";
 
 }
 
 function getClosestEnglishDateAndNepaliDateToAD(nep_year) {
-    if (nep_year >= 2090)
-        throw "Nepali date must be between 2000 and 2090.";
+    if (nep_year > 2100)
+        throw "Nepali date must be between 2000 and 2100.";
+
+    else if (nep_year >= 2100)
+        return [2100, [2043, 04, 13]];
+
+    else if (nep_year >= 2095)
+        return [2095, [2038, 04, 13]];
+
+     else if (nep_year >= 2090)
+        return [2090, [2033, 04, 13]];
 
     else if (nep_year >= 2085)
         return [2085, [2028, 04, 12]];
@@ -545,7 +582,7 @@ function getClosestEnglishDateAndNepaliDateToAD(nep_year) {
         return [2000, [1943, 04, 13]];
 
     else
-        throw "Nepali Date must be between 2000 and 2090";
+        throw "Nepali Date must be between 2000 and 2100";
 
 }
 
